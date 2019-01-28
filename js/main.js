@@ -7,29 +7,10 @@ let move, turn, msg, result, winner, board, number;
 let moveCounter = 0;
 // /*----- cached element references -----*/ 
 const resetBtn = document.getElementById("reset");
-// const s0 = document.getElementById("s0");
-// const s1 = document.getElementById("s1");
-// const s2 = document.getElementById("s2");
-// const s3 = document.getElementById("s3");
-// const s4 = document.getElementById("s4");
-// const s5 = document.getElementById("s5");
-// const s6 = document.getElementById("s6");
-// const s7 = document.getElementById("s7");
-// const s8 = document.getElementById("s8");
-// const square = document.querySelectorAll('.square');
+
 
 // /*----- event listeners -----*/ 
 resetBtn.addEventListener('click', startGame)
-
-// square.addEventListener('click', nextMove(square));
-// s1.addEventListener('click', nextMove('#s1'));
-// s2.addEventListener('click', nextMove('#s2'));
-// s3.addEventListener('click', nextMove('#s3'));
-// s4.addEventListener('click', nextMove('#s4'));
-// s5.addEventListener('click', nextMove('#s5'));
-// s6.addEventListener('click', nextMove('#s6'));
-// s7.addEventListener('click', nextMove('#s7'));
-// s8.addEventListener('click', nextMove('#s8'));
 
 // /*----- functions -----*/
 
@@ -49,76 +30,40 @@ function setMessage(msg) {
     document.getElementById('message').innerText = msg;
 }
 
-// function eventListen(id) {
-//     return document.getElementById(id).addEventListener('click', nextMove);
-// }
-
-// for (i = 0; i < 9; i++) {
-//     console.log(eventListen(`s${i}`));
-//     eventListen(`s${i}`);
-// }    
-
 function nextMove(square) {
     if (document.winner != null) {
       setMessage(document.winner + " already won the game");
     }
-    else if (document.winner == null && moveCounter  < 9 && square.innerText == ""){
+    else if (document.winner == null && moveCounter  < 8 && square.innerText == ""){
       square.innerText = document.turn;
       switchTurn();
-    } else if (document.winner == null && moveCounter < 9 && square.innerText !== "") {
+    } else if (document.winner == null && moveCounter < 8 && square.innerText !== "") {
         setMessage("That square is already used.");
     } else {
+        square.innerText = document.turn;
         setMessage("It was a draw. Reset game!");
     }
   }
 
-// function nextMove(square) {
-//     if (moveCounter < 9 && square.innerText == "") {
-//         square.innerText = document.turn;
-//         switchTurn(); 
-//     } else if (document.winner !== null) {
-//         setMessage(document.turn + " already won.")
-//     } else if(moveCounter >= 9 && document.winner == null) {
-//         setMessage("It is a draw!");
-//     } else if(moveCounter < 9 && square.innerText !== "") {
-//         setMessage("Pick another square!");
-//     }
-// } 
-
 function switchTurn() {
     if (checkForWinner(document.turn)) {
-      setMessage("Congratulations, " + document.turn + " ! You win!");
+      setMessage("Congratulations, " + document.turn + "! You win!");
       document.winner = document.turn;
     }
-    else if (document.turn == "X") {
+    else if (moveCounter < 8 && document.turn == "X") {
         moveCounter ++;
         document.turn = "O";
         setMessage("It's " + document.turn + " 's turn")
  
-    } else {
+    } else if (moveCounter < 8 && document.turn == "O") {
     moveCounter ++;
        document.turn = "X";
        setMessage("It's " + document.turn + " 's turn")
- 
+    } else if(document.winner == null && moveCounter == 9) {
+        square.innerText = document.Turn;
+        setMessage("It was a draw. Reset game!");
     }
  }
-// let moveCounter = 0;
-
-// function switchTurn() {
-//     if(checkForWinner(document.turn)) {
-//         setMessage("Congrats " + document.turn + ", you have won!")
-//         document.winner = document.turn;
-//     } else if(document.turn == "X") {
-//         moveCounter += 1;
-//         document.turn = "0";
-//         setMessage("It is " + document.turn +"'s turn!");
-//     } else if (document.turn == "O") {
-//         moveCounter += 1;
-//         document.turn = "X";
-//         setMessage("It is " + document.turn +"'s turn!");
-//     } 
-//     return moveCounter;
-// }
 
 function checkForWinner(move) {
     var result = false;
