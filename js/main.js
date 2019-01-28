@@ -4,6 +4,7 @@
 // /*----- app's state (variables) -----*/ 
 let move, turn, msg, result, winner, board, number;
 
+let moveCounter = 0;
 // /*----- cached element references -----*/ 
 const resetBtn = document.getElementById("reset");
 // const s0 = document.getElementById("s0");
@@ -38,7 +39,7 @@ function startGame() {
     for (var i = 0; i < 9; i++) {
         clearBox(i);
     }
-    let moveCounter = null;
+    moveCounter = 0;
     document.turn = "X";
     document.winner = null;
     setMessage("Player " + document.turn + " gets to start.");
@@ -56,8 +57,6 @@ function setMessage(msg) {
 //     console.log(eventListen(`s${i}`));
 //     eventListen(`s${i}`);
 // }    
-
-let moveCounter = 0;
 
 function nextMove(square) {
     if (document.winner != null) {
