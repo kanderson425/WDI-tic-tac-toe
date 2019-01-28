@@ -1,0 +1,60 @@
+
+.square {
+  height: 80px;
+  width: 80px;
+  font-size: 45pt;
+  text-align: center;
+  font-family: 'Oswald', sans-serif;
+
+}
+
+.square:hover {
+  background-color: #68798e;
+}
+
+body {
+  width: 550px;
+  margin: auto;
+  background: #EAF2EF;
+}
+
+h1 {
+  border-bottom: 1px solid black;
+  font-family: 'Lato', sans-serif;
+}
+
+#message {
+  font-size: 20px;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+#reset {
+  font-size: 15px;
+  font-family: 'Source Sans Pro', sans-serif;
+  color: red;
+  text-decoration: none;
+  text-align: center;
+  margin-left: 230px;
+  margin-right: 230px;
+  margin-top: 20px;
+  position: fixed;
+}
+
+table {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+}
+
+td {
+  border: 10px solid blue;
+  height: 100px;
+  width: 100px;
+  }
+
+  .button {
+    float: center;
+  }
