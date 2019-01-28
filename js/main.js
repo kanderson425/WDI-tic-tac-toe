@@ -57,44 +57,69 @@ function setMessage(msg) {
 //     eventListen(`s${i}`);
 // }    
 
-// function nextMove(square) {
-//     if (document.winner !== null) {
-//         setMessage(document.turn + " already won.")
-//     } else if (document.getElementById("s" + number).innerText = "") {
-//         document.getElementById("s" + number).innerText = document.turn;
-//         switchTurn(); 
-//     }
-// }
-
-function nextMove(square) {
-    if (document.winner !== null) {
-        setMessage(document.turn + " already won.")
-    } else if(moveCounter >= 9 && document.winner == null) {
-        setMessage("It is a draw!");
-    } else if(moveCounter < 9 && square.innerText == "") {
-        square.innerText = document.turn;
-        switchTurn(); 
-    } else if(moveCounter < 9 && square.innerText !== "") {
-        setMessage("Pick another square!");
-    }
-} 
 let moveCounter = 0;
 
+function nextMove(square) {
+    if (document.winner != null) {
+      setMessage(document.winner + " already won the game");
+    }
+    else if (document.winner == null && moveCounter  < 9 && square.innerText == ""){
+      square.innerText = document.turn;
+      switchTurn();
+    } else if (document.winner == null && moveCounter < 9 && square.innerText !== "") {
+        setMessage("That square is already used.");
+    } else {
+        setMessage("It was a draw. Reset game!");
+    }
+  }
+
+// function nextMove(square) {
+//     if (moveCounter < 9 && square.innerText == "") {
+//         square.innerText = document.turn;
+//         switchTurn(); 
+//     } else if (document.winner !== null) {
+//         setMessage(document.turn + " already won.")
+//     } else if(moveCounter >= 9 && document.winner == null) {
+//         setMessage("It is a draw!");
+//     } else if(moveCounter < 9 && square.innerText !== "") {
+//         setMessage("Pick another square!");
+//     }
+// } 
+
 function switchTurn() {
-    if(checkForWinner(document.turn)) {
-        setMessage("Congrats " + document.turn + ", you have won!")
-        document.winner = document.turn;
-    } else if(document.turn == "X") {
-        moveCounter += 1;
-        document.turn = "0";
-        setMessage("It is " + document.turn +"'s turn!");
-    } else if (document.turn == "O") {
-        moveCounter += 1;
-        document.turn = "X";
-        setMessage("It is " + document.turn +"'s turn!");
-    } 
-    return moveCounter;
-}
+    if (checkForWinner(document.turn)) {
+      setMessage("Congratulations, " + document.turn + " ! You win!");
+      document.winner = document.turn;
+    }
+    else if (document.turn == "X") {
+        moveCounter ++;
+        document.turn = "O";
+        setMessage("It's " + document.turn + " 's turn")
+ 
+    } else {
+    moveCounter ++;
+       document.turn = "X";
+       setMessage("It's " + document.turn + " 's turn")
+ 
+    }
+ }
+// let moveCounter = 0;
+
+// function switchTurn() {
+//     if(checkForWinner(document.turn)) {
+//         setMessage("Congrats " + document.turn + ", you have won!")
+//         document.winner = document.turn;
+//     } else if(document.turn == "X") {
+//         moveCounter += 1;
+//         document.turn = "0";
+//         setMessage("It is " + document.turn +"'s turn!");
+//     } else if (document.turn == "O") {
+//         moveCounter += 1;
+//         document.turn = "X";
+//         setMessage("It is " + document.turn +"'s turn!");
+//     } 
+//     return moveCounter;
+// }
 
 function checkForWinner(move) {
     var result = false;
